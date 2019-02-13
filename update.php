@@ -3,22 +3,18 @@
  * Created by PhpStorm.
  * User: gleb
  * Date: 06/02/2019
- * Time: 22:22
+ * Time: 22:26
  */
-//if (isset($_POST['name'])) $name = $_POST['name'];
-//$pdo = new PDO('mysql:host=localhost;dbname=MarlinProject', 'root', 'root');
-//$count = $pdo->exec("DELETE FROM posts WHERE name='$name'");
-//if ($count == 0) $message = 'Такой статьи нет в базе';
-//else $message = 'Статья успешно удалена';
+if (isset($_POST['name'])) $name = $_POST['name'];
+if (isset($_POST['description'])) $description = $_POST['description'];
 if (isset($_POST['id'])) $id = $_POST['id'];
-else if (isset($_POST['deletepost'])) $id = $_POST['deletepost'];
-else echo 'нет ID';
 require ('connect.php');
-$count = $pdo->exec("DELETE FROM posts WHERE id='$id'");
-if ($count == 0) $message = 'Такой статьи нет в базе';
-else $message = 'Статья успешно удалена';
-?>
+//$statement = $pdo->query("UPDATE  posts SET description='$description' WHERE id='$id' ");
 
+$count = $pdo->exec("UPDATE  posts SET description='$description', name='$name' WHERE id='$id'");
+if ($count == 0) $message = 'Такой статьи нет в базе';
+else $message = 'Статья успешно отредактирована';
+?>
 <!doctype html>
 <html lang="en">
 <head>
